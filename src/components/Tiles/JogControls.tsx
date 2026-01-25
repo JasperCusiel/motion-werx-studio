@@ -1,4 +1,3 @@
-import DashboardTile from "../DashboardTile"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 
@@ -6,7 +5,7 @@ const axes = ["X", "Y", "Z", "RX", "RY", "RZ"]
 
 export default function JogControls() {
   return (
-    <DashboardTile title="Jog Controls">
+
       <div className="flex flex-col gap-4">
         <div className="flex gap-2">
           <Button variant="outline" className="w-full">Cartesian</Button>
@@ -30,6 +29,5 @@ export default function JogControls() {
           <Slider defaultValue={[10]} max={50} />
         </div>
       </div>
-    </DashboardTile>
   )
 }

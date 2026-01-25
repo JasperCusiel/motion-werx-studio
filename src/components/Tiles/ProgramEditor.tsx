@@ -1,4 +1,3 @@
-import DashboardTile from "../DashboardTile"
 import { Button } from "@/components/ui/button"
 import { Play, Pause, Square } from "lucide-react"
 import { useState } from "react"
@@ -95,7 +94,6 @@ export default function ProgramEditor() {
   }
 
   return (
-    <DashboardTile title="Program Editor">
       <div className="flex flex-col h-full gap-3">
         {/* Top Tab Bar */}
         <div className="flex items-center border-b border-gray-200 dark:border-gray-700">
@@ -175,6 +173,5 @@ export default function ProgramEditor() {
           </Button>
         </div>
       </div>
-    </DashboardTile>
   )
 }

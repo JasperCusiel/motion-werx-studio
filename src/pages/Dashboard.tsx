@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react"
-import GridLayout from "react-grid-layout"
-import "react-grid-layout/css/styles.css"
-import "react-resizable/css/styles.css"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
 import ProgramEditor from "@/components/Tiles/ProgramEditor"
@@ -15,48 +12,22 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
 export default function Dashboard() {
-  const rowHeight = 30
-  const cols = 12
-  const [width, setWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth)
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
-  // Layout definition: no maxH / maxW, tiles can expand beyond viewport
-  const layout = [
-    { i: "jog", x: 0, y: 0, w: 2, h: 8, minW: 2, minH: 5 },
-    { i: "robot", x: 6, y: 2, w: 6, h: 5, minW: 4, minH: 5 },
-    { i: "position", x: 6, y: 0, w: 6, h: 1.5, minW: 2, minH: 2 },
-    { i: "serial", x: 6, y: 6, w: 6, h: 1.5, minW: 4, minH: 1 },
-    { i: "program", x: 2, y: 0, w: 4, h: 7.5, minW: 2, minH: 6 },
-  ]
-
   return (
-    // Scrollable container
-    <div style={{ width: "100vw", height: "100vh", overflow: "auto" }}>
-      <div className="flex items-center h-15 p-10 justify-between">
-        {/* Left side: Logo + Title + MenuBar */}
+    <div className="w-screen h-screen overflow-auto p-6 flex flex-col gap-6">
+      {/* Top Bar */}
+      <div className="flex items-center justify-between gap-6">
         <div className="flex items-center gap-6">
-          {/* Logo */}
           <img
-            src="/src/assets/logo.jpg"          // replace with your logo path
+            src="/src/assets/logo.jpg"
             alt="MotionWerx Logo"
-            className="w-10 h-10"    // adjust size
+            className="w-10 h-10"
           />
-
-          {/* Title */}
           <h1 className="text-3xl font-extrabold tracking-tight text-balance">
             MotionWerx Studio
           </h1>
-
-          {/* Menubar */}
           <AppMenuBar />
         </div>
 
-        {/* Right side: Badge + Switch */}
         <div className="flex items-center space-x-5">
           <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
             Connected
@@ -68,37 +39,60 @@ export default function Dashboard() {
         </div>
       </div>
 
-
-    
       <Separator />
-      <GridLayout
-        className="layout"
-        layout={layout}
-        cols={cols}
-        rowHeight={rowHeight}
-        width={width}
-        draggableHandle=".tile-handle"
-        compactType={null} // disables auto-compaction
-      >
-        {/* Each tile */}
-        <div key="jog">
-          <JogControls />
-        </div>
-        <div key="program">
-          <ProgramEditor />
-        </div>
-        <div key="robot">
-          <RobotView />
-        </div>
-        <div key="position">
-          <PositionPanel />
-        </div>
-        <div key="serial">
-          <SerialMonitor />
-        </div>
-      </GridLayout>
+
+      {/* Grid Layout */}
+      <div className="grid grid-cols-12 grid-rows-12 gap-6">
+        {/* Program Editor */}
+        <Card className="col-start-3 col-span-4 row-start-1 row-span-5">
+          <CardHeader>
+            <CardTitle>Program Editor</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-auto">
+            <ProgramEditor />
+          </CardContent>
+        </Card>
+        {/* Jog Controls */}
+        <Card className="col-start-1 col-span-2 row-start-1 row-span-3">
+          <CardHeader>
+            <CardTitle>Jog Controls</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-auto">
+            <JogControls />
+          </CardContent>
+        </Card>
+
+
+        {/* Robot View */}
+        <Card className="col-start-7 col-span-6 row-start-2 row-span-4">
+          <CardHeader>
+            <CardTitle>Robot View</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-auto">
+            <RobotView />
+          </CardContent>
+        </Card>
+
+        {/* Position Panel */}
+        <Card className="col-start-7 col-span-6 row-start-1 row-span-1">
+          <CardHeader>
+            <CardTitle>Position Panel</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-auto">
+            <PositionPanel />
+          </CardContent>
+        </Card>
+
+        {/* Serial Monitor */}
+        <Card className="col-start-1 col-span-2 row-start-4 row-span-2">
+          <CardHeader>
+            <CardTitle>Serial Monitor</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-auto">
+            <SerialMonitor />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
-
-

@@ -1,4 +1,3 @@
-import DashboardTile from "../DashboardTile"
 
 const values = [
   ["X", "0.000"], ["Y", "0.000"], ["Z", "0.000"],
@@ -9,7 +8,7 @@ const values = [
 
 export default function PositionPanel() {
   return (
-    <DashboardTile title="Position Readout">
+   
       <div className="grid grid-cols-3 gap-2 text-sm">
         {values.map(([label, value]) => (
           <div
@@ -21,6 +20,6 @@ export default function PositionPanel() {
           </div>
         ))}
       </div>
-    </DashboardTile>
+
   )
 }

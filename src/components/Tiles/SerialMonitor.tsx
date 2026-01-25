@@ -1,10 +1,9 @@
-import DashboardTile from "../DashboardTile"
+
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function SerialMonitor() {
   return (
-    <DashboardTile title="Serial Monitor">
       <div className="flex flex-col h-full gap-2">
         <Tabs defaultValue="serial">
           <TabsList>
@@ -20,6 +19,5 @@ export default function SerialMonitor() {
           <div>[DBG] Path segments: 18</div>
         </ScrollArea>
       </div>
-    </DashboardTile>
   )
 }
